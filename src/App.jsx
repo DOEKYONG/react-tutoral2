@@ -1,34 +1,22 @@
 import { useState } from "react";
 import "./App.css";
 
-function IncreaseButtonComponent({setCount}) {
+
+
+
+function ButtonComponent({className,onClick,children}) {
   return (
     <>
       <button 
-            className="increase-button" 
-            onClick={() => {
-              setCount((prev)=>prev+1);
-            }}
+            className={className}
+            onClick={onClick}
           >
-            증가
+            {children}
         </button>
     </>
   )
 }
-function DecreaseButtonComponent({setCount}) {
-  return (
-    <>
-      <button
-          className="decrease-button"
-          onClick={() => {
-            setCount((previousCount) => previousCount-1);
-          }}
-        >
-          감소
-        </button>
-    </>
-    )
-}
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -38,9 +26,12 @@ function App() {
 
     <div style={{ marginBottom:10}}>{count}</div>
     <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <IncreaseButtonComponent setCount={setCount} />
-      <DecreaseButtonComponent setCount={setCount} />
-      
+      <ButtonComponent className={'increase-button'} onClick={() => {setCount((prev) => prev + 1)}} >
+        증가
+        </ButtonComponent>
+        <ButtonComponent className={'decrease-button'} onClick={() => {setCount((prev) => prev - 1)}} >
+        감소
+        </ButtonComponent>      
     </div>
   </>);
 }
