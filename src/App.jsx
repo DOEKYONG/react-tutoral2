@@ -2,30 +2,23 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [age, setAge] = useState(0);
+  const [valid, setValid] = useState(false);
+
 
   return (
   <>
+    <input
+      type="number"
+      value={age}
+      onChange={ (e) => {
+        const changed = e.target.value
+        setAge(changed) 
+        setValid(changed >= 19)
+      }}
+    />
+    {valid ? <div>성년입니다.</div> : <div style={{ color: 'red' }}>미성년입니다.</div>}
 
-    <div style={{ marginBottom:10}}>{count}</div>
-    <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <button 
-        className="increase-button" 
-        onClick={(e) => {
-          setCount((previousCount) => previousCount+1);
-        }}
-      >
-        증가
-      </button>
-      <button
-        className="decrease-button"
-        onClick={(e) => {
-          setCount((previousCount) => previousCount-1);
-        }}
-      >
-        감소
-        </button>
-    </div>
   </>);
 }
 
