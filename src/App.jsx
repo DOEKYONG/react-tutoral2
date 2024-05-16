@@ -3,21 +3,39 @@ import "./App.css";
 
 function ListItemComponent({item : person, children, setPeople}) {
   const [activated,setActivated] = useState(false);
+  const [changedDescription,setChangedDescription] = useState(person.desc); 
   return (
     <li onClick={ () => {setActivated(!activated)}}>
       <div>{children}</div>
       <div>{person.age}</div>
-      { activated ? <input type='text' value={person.desc}
+      { activated ? (
+      <>
+      <input type='text' 
+        value={changedDescription}
         onChange={(e) => {
           const typed = e.target.value;
-          setPeople((prev) => {
-            const next = prev.map((each) => {
-              return person.name === each.name?{...each, desc:typed}:each
-            })
-            return next;
-          })
+          setChangedDescription(typed)
         }}
-      /> : <div>{person.desc}</div>}
+      />
+      <button onClick={() => {
+        setPeople((prev) => {
+          return prev.map((each) => {
+            return person.name === each.name?{...each, desc:changedDescription}:each
+          })
+        })
+        console.log('저장')
+      }}>
+        확인 
+      </button>
+      <button onClick={() => {
+        console.log('취소')
+        setChangedDescription(person.desc);
+      }}>
+        취소 
+      </button>
+      </>
+    )
+      : <div>{person.desc}</div>}
     </li>)
 }
 
