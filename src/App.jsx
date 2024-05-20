@@ -1,31 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const ageReferecne = useRef(0);
+  const [age,setAge] = useState(0);
 
+  // 리랜더 일어나는지 콘솔로그
+  console.log("리랜더");
   return (
   <>
-
-    <div style={{ marginBottom:10}}>{count}</div>
-    <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <button 
-        className="increase-button" 
-        onClick={(e) => {
-          setCount((previousCount) => previousCount+1);
-        }}
-      >
-        증가
-      </button>
-      <button
-        className="decrease-button"
-        onClick={(e) => {
-          setCount((previousCount) => previousCount-1);
-        }}
-      >
-        감소
-        </button>
-    </div>
+  <div>
+    {age}
+  </div>
+  <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
   </>);
 }
 
