@@ -1,31 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const textReference = useRef();
+  console.log("리랜더")
 
   return (
   <>
-
-    <div style={{ marginBottom:10}}>{count}</div>
-    <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <button 
-        className="increase-button" 
-        onClick={(e) => {
-          setCount((previousCount) => previousCount+1);
-        }}
-      >
-        증가
-      </button>
-      <button
-        className="decrease-button"
-        onClick={(e) => {
-          setCount((previousCount) => previousCount-1);
-        }}
-      >
-        감소
-        </button>
-    </div>
+  <div ref={textReference}> Ref를 통한 DOM 조작  </div>
+  <button onClick={()=> {
+    textReference.current.className === 'not-modified'
+    ?textReference.current.className='modified'
+    :textReference.current.className='not-modified'
+    
+    // textReference.current.style.color==='black'?textReference.current.style.color = 'red':textReference.current.style.color='black';
+  }}></button>
   </>);
 }
 
