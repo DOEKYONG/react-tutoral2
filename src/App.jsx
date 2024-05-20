@@ -1,31 +1,22 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [visible,setVisible] = useState(false);
   return (
   <>
-
-    <div style={{ marginBottom:10}}>{count}</div>
-    <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <button 
-        className="increase-button" 
-        onClick={(e) => {
-          setCount((previousCount) => previousCount+1);
-        }}
-      >
-        증가
-      </button>
-      <button
-        className="decrease-button"
-        onClick={(e) => {
-          setCount((previousCount) => previousCount-1);
-        }}
-      >
-        감소
-        </button>
-    </div>
+  <div>
+  <>
+  <input type="text" />
+  <div>아이디 검증 에러 메시지</div>
+  </> 
+  <>
+  <input type={visible ? 'text':'password'} />
+  <button onClick={() => {setVisible((prev)=>!prev)}}>{visible?'안보임':'보임'}</button>
+  <div>비번 검증 에러 메시지</div>
+  </> 
+  <div>로그인 버튼</div>
+  </div>
   </>);
 }
 
