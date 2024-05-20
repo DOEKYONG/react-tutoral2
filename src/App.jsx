@@ -1,32 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-
+  const countReference = useRef(0);
   return (
   <>
+    <div>{countReference.current}</div>
+    <button onClick={() => (countReference.current+=1)}>증가</button>
+    <button onClick={() => console.log(countReference.current)}>표기</button>
 
-    <div style={{ marginBottom:10}}>{count}</div>
-    <div style={{display:'flex', flexDirection:'row', gap:10}}>
-      <button 
-        className="increase-button" 
-        onClick={(e) => {
-          setCount((previousCount) => previousCount+1);
-        }}
-      >
-        증가
-      </button>
-      <button
-        className="decrease-button"
-        onClick={(e) => {
-          setCount((previousCount) => previousCount-1);
-        }}
-      >
-        감소
-        </button>
-    </div>
-  </>);
+  </>
+  );
 }
 
 export default App;
